@@ -15,8 +15,6 @@ services:
     volumes:
       - 'workspace:/workspace'
       - 'opencode-config:/root/.config/opencode'
-    ports:
-      - '4096:4096'
   code-server:
     image: 'codercom/code-server:latest'
     restart: unless-stopped
@@ -24,16 +22,12 @@ services:
       PASSWORD: '${CODE_SERVER_PASSWORD}'
     volumes:
       - 'workspace:/workspace'
-    ports:
-      - '8443:8080'
   filebrowser:
     image: 'filebrowser/filebrowser:latest'
     restart: unless-stopped
     volumes:
       - 'workspace:/srv'
       - 'filebrowser-db:/database'
-    ports:
-      - '8081:80'
   git:
     image: 'alpine/git:latest'
     restart: unless-stopped
