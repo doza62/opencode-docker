@@ -5,10 +5,10 @@ services:
     restart: unless-stopped
     command:
       - serve
-      - '--hostname'
-      - 0.0.0.0
-      - '--port'
-      - '4096'
+      # - '--hostname'
+      # - 0.0.0.0
+      # - '--port'
+      # - '4096'
     environment:
       OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
       OPENCODE_CONFIG_CONTENT: '{ "$schema": "https://opencode.ai/config.json", "server": { "port": 4096, "hostname": "0.0.0.0"},  "plugin": ["oh-my-opencode", "opencode-mobile", "@tarquinen/opencode-smart-title" ]}'
@@ -23,9 +23,7 @@ services:
     environment:
       PASSWORD: '${CODE_SERVER_PASSWORD}'
     volumes:
-      - 'workspace:/home/coder/project'
-      - 'code-server-data:/home/coder/.local'
-      - 'code-server-config:/home/coder/.config'
+      - 'workspace:/workspace'
     ports:
       - '8443:8080'
   filebrowser:
@@ -47,8 +45,6 @@ services:
       - '-c'
       - 'sleep infinity'
 volumes:
-  workspace: null
-  opencode-config: null
-  code-server-data: null
-  code-server-config: null
-  filebrowser-db: null
+  workspace:
+  opencode-config:
+  filebrowser-db:
