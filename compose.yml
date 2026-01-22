@@ -1,0 +1,54 @@
+version: '3.9'
+services:
+  opencode:
+    image: 'ghcr.io/anomalyco/opencode:1.1.28'
+    restart: unless-stopped
+    command:
+      - serve
+      - '--hostname'
+      - 0.0.0.0
+      - '--port'
+      - '4096'
+    environment:
+      OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
+      OPENCODE_CONFIG_CONTENT: '{ "$schema": "https://opencode.ai/config.json", "server": { "port": 4096, "hostname": "0.0.0.0"},  "plugin": ["oh-my-opencode", "opencode-mobile", "@tarquinen/opencode-smart-title" ]}'
+    volumes:
+      - 'workspace:/workspace'
+      - 'opencode-config:/root/.config/opencode'
+    ports:
+      - '4096:4096'
+  code-server:
+    image: 'codercom/code-server:latest'
+    restart: unless-stopped
+    environment:
+      PASSWORD: '${CODE_SERVER_PASSWORD}'
+    volumes:
+      - 'workspace:/home/coder/project'
+      - 'code-server-data:/home/coder/.local'
+      - 'code-server-config:/home/coder/.config'
+    ports:
+      - '8443:8080'
+  filebrowser:
+    image: 'filebrowser/filebrowser:latest'
+    restart: unless-stopped
+    volumes:
+      - 'workspace:/srv'
+      - 'filebrowser-db:/database'
+    ports:
+      - '8081:80'
+  git:
+    image: 'alpine/git:latest'
+    restart: unless-stopped
+    working_dir: /workspace
+    volumes:
+      - 'workspace:/workspace'
+    entrypoint:
+      - sh
+      - '-c'
+      - 'sleep infinity'
+volumes:
+  workspace: null
+  opencode-config: null
+  code-server-data: null
+  code-server-config: null
+  filebrowser-db: null
