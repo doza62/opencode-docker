@@ -10,6 +10,7 @@ services:
       - '--port'
       - '4096'
     environment:
+      OPENCODE_MOBILE_DEBUG: 1
       OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
       OPENCODE_CONFIG_CONTENT: >
         { "$schema": "https://opencode.ai/config.json", 
