@@ -9,9 +9,10 @@ services:
       - 0.0.0.0
       - '--port'
       - '4096'
+    entrypoint: "bunx oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no --openai=no --opencode-zen=no --zai-coding-plan=no"
     environment:
       OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
-      OPENCODE_CONFIG_CONTENT: '{ "$schema": "https://opencode.ai/config.json", "server": { "port": 4096, "hostname": "0.0.0.0"},  "plugin": ["oh-my-opencode", "opencode-mobile", "@tarquinen/opencode-smart-title" ]}'
+      OPENCODE_CONFIG_CONTENT: '{ "$schema": "https://opencode.ai/config.json", "server": { "port": 4096, "hostname": "0.0.0.0"},  "plugin": ["opencode-mobile", "@tarquinen/opencode-smart-title" ]}'
     volumes:
       - 'workspace:/workspace'
       - 'opencode-config:/root/.config/opencode'
