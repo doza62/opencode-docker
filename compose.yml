@@ -10,7 +10,7 @@ services:
       - '--port'
       - '4096'
     entrypoint: >
-      sh -c "apk add --no-cache npm && npx oh-my-opencode install"
+      sh -c "apk add --no-cache npm && npx -y oh-my-opencode install --no-tui --claude=no --gemini=no --copilot=no --skip-auth"
     environment:
       OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
       OPENCODE_CONFIG_CONTENT: '{ "$schema": "https://opencode.ai/config.json", "server": { "port": 4096, "hostname": "0.0.0.0"}}'
