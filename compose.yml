@@ -9,6 +9,7 @@ services:
       - 0.0.0.0
       - '--port'
       - '4097'
+      - '--print-logs'
     environment:
       OPENCODE_MOBILE_DEBUG: 1
       OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
