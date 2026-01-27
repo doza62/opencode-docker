@@ -8,9 +8,7 @@ services:
       - '--hostname'
       - 0.0.0.0
       - '--port'
-      - '4096'
-      - '--print-logs'
-      - '--log-level DEBUG'
+      - '4097'
     environment:
       OPENCODE_MOBILE_DEBUG: 1
       OPENCODE_SERVER_PASSWORD: '${OPENCODE_SERVER_PASSWORD}'
